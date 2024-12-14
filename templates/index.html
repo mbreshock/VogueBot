@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Viewer</h1>
+        <form method="POST">
+            <label for="id_code">Enter ID Code:</label><br>
+            <input type="text" id="id_code" name="id_code" required><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+        {% if image_url %}
+            <h2>Image Result:</h2>
+            <img src="{{ image_url }}" alt="Fetched Image">
+        {% endif %}
+    </div>
+</body>
+</html>
