@@ -2,14 +2,14 @@
 import pandas as pd
 import yaml
 import json
-import explore_shaped
+import shaped
 import os
 
 # initalize Yujian's Shaped.AI API Key
 API_KEY = "dQRowDdtmU4mCZdHyKALGGvYJxOo9Mw9Ye5bR544"
 
 # Define client
-client = explore_shaped.Client(api_key=API_KEY)
+client = shaped.Client(api_key=API_KEY)
 
 # Make a request to the shaped API
 # return a list of relevant items for a given user.
@@ -17,11 +17,11 @@ response = client.rank(
     model_name="h_and_m_product_recs_demo",
     user_id="a8f8851c9ca25414947073f42a377d522c89aeb3ce5769b2c2dbaa5bc7e7c2ee",
     return_metadata=True,
-    config=explore_shaped.InferenceConfig(
+    config=shaped.InferenceConfig(
         exploration_factor=0.1,
         diversity_factor=0.1,
         retrieval_k=600,
-        retrieval_k_override=explore_shaped.RetrieverTopKOverride(
+        retrieval_k_override=shaped.RetrieverTopKOverride(
             knn=300,
             chronological=0,
             toplist=0,
@@ -40,11 +40,11 @@ similar = client.similar_items(
     model_name="h_and_m_product_recs_demo", 
     item_id="783346030",
     return_metadata=True,
-    config=explore_shaped.InferenceConfig(
+    config=shaped.InferenceConfig(
         exploration_factor=0.1,
         diversity_factor=0.1,
         retrieval_k=600,
-        retrieval_k_override=explore_shaped.RetrieverTopKOverride(
+        retrieval_k_override=shaped.RetrieverTopKOverride(
             knn=300,
             chronological=0,
             toplist=0,
