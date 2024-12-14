@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Viewer</title>
+    <title>H&M Similar Products</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,13 +11,13 @@
             text-align: center;
         }
         .container {
-            max-width: 500px;
+            max-width: 600px;
             margin: auto;
         }
         img {
             max-width: 100%;
             height: auto;
-            margin-top: 20px;
+            margin: 10px 0;
         }
         .error {
             color: red;
@@ -30,15 +30,28 @@
         <h1>Image Viewer</h1>
         <form method="POST">
             <label for="id_code">Enter ID Code:</label><br>
-            <input type="text" id="id_code" name="id_code" required><br><br>
+            <input 
+                type="text" 
+                id="id_code" 
+                name="id_code" 
+                value="{{ default_id_code }}" 
+                required>
+            <br><br>
             <button type="submit">Submit</button>
         </form>
         {% if error_message %}
             <p class="error">{{ error_message }}</p>
         {% endif %}
-        {% if image_url %}
-            <h2>Image Result:</h2>
-            <img src="{{ image_url }}" alt="Fetched Image">
+        {% if products %}
+            <h2>Product Results:</h2>
+            {% for product in products %}
+                <div>
+                    <p><strong>Product ID:</strong> {{ product.product_id }}</p>
+                    <p><strong>Product Name:</strong> {{ product.product_name }}</p>
+                    <img src="{{ product.image_url }}" alt="Product Image">
+                </div>
+                <hr>
+            {% endfor %}
         {% endif %}
     </div>
 </body>
